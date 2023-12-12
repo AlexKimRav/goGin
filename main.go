@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
 
 type album struct {
 	Id     string  `json:"id"`
@@ -10,5 +15,15 @@ type album struct {
 }
 
 func main() {
-	fmt.Println("Test")
+	router := gin.Default()
+	router.GET("/hello", getHello)
+	err := router.Run("localhost:8080")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+}
+
+func getHello(c *gin.Context) {
+	c.String(http.StatusOK, "hello")
 }
