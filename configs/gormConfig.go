@@ -2,7 +2,6 @@ package configs
 
 import (
 	"fmt"
-	"gogin/model"
 	"os"
 	"time"
 
@@ -22,8 +21,6 @@ func Init() *gorm.DB {
 	if err != nil {
 		panic(err)
 	}
-
-	db.AutoMigrate(&model.Album{}, &model.User{})
 	return db
 }
 

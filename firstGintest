@@ -1,0 +1,28 @@
+// func getAlbums(c *gin.Context) {
+// 	c.IndentedJSON(http.StatusOK, albums)
+// }
+
+// func getAlbumById(c *gin.Context) {
+// 	id, err := strconv.Atoi(c.Param("id"))
+// 	if err != nil {
+// 		panic(err.Error())
+// 	}
+
+// 	for _, album := range albums {
+// 		if album.Id == id {
+// 			c.IndentedJSON(http.StatusOK, album)
+// 			return
+// 		}
+// 	}
+// }
+
+// func postAlbums(c *gin.Context) {
+// 	var newAlbum model.Album
+
+// 	if err := c.BindJSON(&newAlbum); err != nil {
+// 		return
+// 	}
+
+// 	albums = append(albums, newAlbum)
+// 	c.IndentedJSON(http.StatusCreated, newAlbum)
+// }
