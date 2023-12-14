@@ -8,7 +8,7 @@ import (
 
 func main() {
 	configs.Init()
-	router := router.Init(&configs.Initialization{})
+	router := router.Init(configs.Init() //bug, this shit is not working
 	err := router.Run("localhost:8080")
 
 	if err != nil {
