@@ -13,14 +13,12 @@ type Initialization struct {
 }
 
 // Change user to album
-func NewInitialization(userRepo repository.UserRepository,
-	userService service.UserService,
-	userCtrl controller.UserController,
-	roleRepo repository.RoleRepository) *Initialization {
+func NewInitialization(albumRepo repository.AlbumRepository,
+	albumService service.AlbumService,
+	albumController controller.AlbumController) *Initialization {
 	return &Initialization{
-		userRepo: userRepo,
-		userSvc:  userService,
-		UserCtrl: userCtrl,
-		RoleRepo: roleRepo,
+		albumRepo: albumRepo,
+		albumSvc:  albumService,
+		AlbumCtrl: albumController,
 	}
 }

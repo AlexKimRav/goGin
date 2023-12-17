@@ -11,7 +11,7 @@ import (
 
 var dbase *gorm.DB
 
-func Init() *gorm.DB {
+func InitToDb() *gorm.DB {
 	//Getenv is taking from system var with name MYSQL_PASSWORD
 	fmt.Println("\nPASSWORD IS: " + os.Getenv("MYSQL_PASSWORD") + "\n")
 	pw := os.Getenv("MYSQL_PASSWORD")
@@ -26,13 +26,13 @@ func Init() *gorm.DB {
 
 func GetDb() *gorm.DB {
 	if dbase == nil {
-		dbase = Init()
+		dbase = InitToDb()
 		sleep := time.Duration(1)
 		for dbase == nil {
 			sleep = sleep * 2
 			fmt.Println("db is unavailable, wait for %d sec.\n", sleep)
 			time.Sleep(sleep * time.Second)
-			dbase = Init()
+			dbase = InitToDb()
 		}
 	}
 	return dbase

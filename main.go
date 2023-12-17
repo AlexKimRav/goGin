@@ -7,8 +7,9 @@ import (
 )
 
 func main() {
-	configs.Init()
-	router := router.Init(configs.Init() //bug, this shit is not working
+	init := configs.Init()
+
+	router := router.Init(init) //bug, this shit is not working
 	err := router.Run("localhost:8080")
 
 	if err != nil {

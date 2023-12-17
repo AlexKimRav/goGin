@@ -1,7 +1,3 @@
-// go:build wireinject
-//go:build wireinject
-// +build wireinject
-
 //It would be a trouble if we inject each
 // component manually in Go, especially when our program becomes bigger
 // and complex. In this case we’re using
@@ -18,25 +14,21 @@ import (
 	"github.com/google/wire"
 )
 
-var db = wire.NewSet(ConnectToDB)
+var db = wire.NewSet(GetDb())
 
-var userServiceSet = wire.NewSet(service.UserServiceInit,
-	wire.Bind(new(service.UserService), new(*service.UserServiceImpl)),
+var albumServiceSet = wire.NewSet(service.AlbumServiceInit,
+	wire.Bind(new(service.AlbumService), new(*service.AlbumServiceImpl)),
 )
 
-var userRepoSet = wire.NewSet(repository.UserRepositoryInit,
-	wire.Bind(new(repository.UserRepository), new(*repository.UserRepositoryImpl)),
+var albumRepoSet = wire.NewSet(repository.AlbumRepositoryInit,
+	wire.Bind(new(repository.AlbumRepository), new(*repository.AlbumRepositoryImpl)),
 )
 
-var userCtrlSet = wire.NewSet(controller.UserControllerInit,
-	wire.Bind(new(controller.UserController), new(*controller.UserControllerImpl)),
-)
-
-var roleRepoSet = wire.NewSet(repository.RoleRepositoryInit,
-	wire.Bind(new(repository.RoleRepository), new(*repository.RoleRepositoryImpl)),
+var albumCtrlSet = wire.NewSet(controller.AlbumControllerInit,
+	wire.Bind(new(controller.AlbumController), new(*controller.AlbumControllerImpl)),
 )
 
 func Init() *Initialization {
-	wire.Build(NewInitialization, db, userCtrlSet, userServiceSet, userRepoSet, roleRepoSet)
+	wire.Build(NewInitialization, db, albumCtrlSet, albumServiceSet, albumRepoSet)
 	return nil
 }
